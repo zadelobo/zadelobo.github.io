@@ -31,111 +31,266 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">//<![CDATA[
     	window.onload = function() {
-    		data = 
-    		{
-				"username": "avtcsfhs",
-				"api_token": "4e9399f8-16af-46eb-81d8-a1bb4c3e1c14",
-    		}
     		document.getElementById("LightOn").onclick = function() {
-    			data["text"] = "Lights ON";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Lights ON"}),
+					processData: false,
+				});
+
     			alert("Lights ON");
     		};
     		document.getElementById("LightOff").onclick = function() {
-    			data["text"] = "Lights OFF";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Lights OFF"}),
+					processData: false,
+				});
+
     			alert("Lights OFF");
     		};
     		document.getElementById("StartMusic").onclick = function() {
-    			data["text"] = "PLAY Music";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "PLAY Music"}),
+					processData: false,
+				});
+
     			alert("PLAY Music");
     		};
     		document.getElementById("StopMusic").onclick = function() {
-    			data["text"] = "STOP Music";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "STOP Music"}),
+					processData: false,
+				});
+
     			alert("STOP Music");
     		};
     		document.getElementById("StartVideo").onclick = function() {
-    			data["text"] = "PLAY Video";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "PLAY Video"}),
+					processData: false,
+				});
+
     			alert("PLAY Video");
     		};
     		document.getElementById("StopVideo").onclick = function() {
-    			data["text"] = "STOP Video";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "STOP Video"}),
+					processData: false,
+				});
+
     			alert("STOP Video");
     		};
     		document.getElementById("Mic1Up").onclick = function() {
-    			data["text"] = "Mic 1 UP";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Mic 1 UP"}),
+					processData: false,
+				});
+
     			alert("Mic 1 UP");
     		};
     		document.getElementById("Mic1Down").onclick = function() {
-    			data["text"] = "Mic 1 DOWN";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Mic 1 DOWN"}),
+					processData: false,
+				});
+
     			alert("Mic 1 DOWN");
     		};
     		document.getElementById("Mic1Mute").onclick = function() {
-    			data["text"] = "MUTE Mic 1";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "MUTE Mic 1"}),
+					processData: false,
+				});
+
     			alert("MUTE Mic 1");
     		};
     		document.getElementById("Mic2Up").onclick = function() {
-    			data["text"] = "Mic 2 UP";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Mic 2 UP"}),
+					processData: false,
+				});
+
     			alert("Mic 2 UP");
     		};
     		document.getElementById("Mic2Down").onclick = function() {
-    			data["text"] = "Mic 2 DOWN";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Mic 2 DOWN"}),
+					processData: false,
+				});
+
     			alert("Mic 2 DOWN");
     		};
     		document.getElementById("Mic2Mute").onclick = function() {
-    			data["text"] = "MUTE Mic 2";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "MUTE Mic 2"}),
+					processData: false,
+				});
+
     			alert("MUTE Mic 2");
     		};
     		document.getElementById("VideoInput1").onclick = function() {
-    			data["text"] = "Video Input 1";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 1"}),
+					processData: false,
+				});
+
     			alert("Video Input 1");
     		};
     		document.getElementById("VideoInput2").onclick = function() {
-    			data["text"] = "Video Input 2";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					contentType: 'application/json',
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 2"}),
+					processData: false,
+					dataType: "json"
+				});
+
     			alert("Video Input 2");
     		};
     		document.getElementById("VideoInput4").onclick = function() {
-    			data["text"] = "Video Input 4";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 4"}),
+					processData: false,
+				});
+
     			alert("Video Input 4");
     		};
     		document.getElementById("VideoInput5").onclick = function() {
-    			data["text"] = "Video Input 5";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 5"}),
+					processData: false,
+				});
+
     			alert("Video Input 5");
     		};
     		document.getElementById("VideoInput6").onclick = function() {
-    			data["text"] = "Video Input 6";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 6"}),
+					processData: false,
+				});
+
     			alert("Video Input 6");
     		};
     		document.getElementById("VideoInput7").onclick = function() {
-    			data["text"] = "Video Input 7";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Video Input 7"}),
+					processData: false,
+				});
+
     			alert("Video Input 7");
     		};
     		document.getElementById("Albert").onclick = function() {
-    			data["text"] = "Voice Call NOW";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "Voice Call NOW"}),
+					processData: false,
+				});
+
     			alert("Voice Call NOW");
     		};
     		document.getElementById("Herhold").onclick = function() {
-    			data["text"] = "EMERGENCY";
-    			$.post('https://api.justyo.co/yo/', data);
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/626911571024805938/F3pPE-oIUksRAgmFboE2O1U6ubQnB-t29HP5e-_VkgCn28Ko60e3UgMwFF1bIKq-_FuP",
+					data: JSON.stringify({"content": "EMERGENCY"}),
+					processData: false,
+				});
+
     			alert("EMERGENCY");
     		};
+
     	};
     </script>
 </head>
