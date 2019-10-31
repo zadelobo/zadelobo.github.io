@@ -1,452 +1,310 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>AVTC Mission Control</title>
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Password Protected Page</title>
     <style>
-        * {
+        html, body {
             margin: 0;
-            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .imgbox {
-            display: grid;
+        #dialogText {
+            padding: 10px 30px;
+            color: white;
+            background-color: #333333;
+        }
+        
+        #dialogWrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: table;
+            background-color: #EEEEEE;
+        }
+        
+        #dialogWrapCell {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        #mainDialog {
+            max-width: 400px;
+            margin: 5px;
+            border: solid #AAAAAA 1px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 3px #AAAAAA;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+            overflow: hidden;
+            text-align: left;
+        }
+        #passArea {
+            padding: 20px 30px;
+            background-color: white;
+        }
+        #passArea > * {
+            margin: 5px auto;
+        }
+        #pass {
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+        }
+        
+        #messageWrapper {
+            float: left;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+        
+        .notifyText {
+            display: none;
+        }
+        
+        #invalidPass {
+            color: red;
+        }
+        
+        #success {
+            color: green;
+        }
+        
+        #submitPass {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #E7E7E7;
+            border: solid gray 1px;
+            float: right;
+        }
+        #contentFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
         }
-        .large-fit {
-            max-width: 100%;
-            max-height: 49.5vh;
-            margin: auto;
-        }
-        .medium-fit {
-            max-width: 100%;
-            max-height: 24.25vh;
-            margin: auto;
-        }
-        .small-fit {
-            max-width: 100%;
-            max-height: 16vh;
-            margin: auto;
-        }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript">//<![CDATA[
-    	window.onload = function() {
-    		document.getElementById("LightOn").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Lights ON"}),
-					processData: false,
-				});
-
-    			alert("Lights ON");
-    		};
-    		document.getElementById("LightOff").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Lights OFF"}),
-					processData: false,
-				});
-
-    			alert("Lights OFF");
-    		};
-    		document.getElementById("StartMusic").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "PLAY Music"}),
-					processData: false,
-				});
-
-    			alert("PLAY Music");
-    		};
-    		document.getElementById("StopMusic").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "STOP Music"}),
-					processData: false,
-				});
-
-    			alert("STOP Music");
-    		};
-    		document.getElementById("StartVideo").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "PLAY Video"}),
-					processData: false,
-				});
-
-    			alert("PLAY Video");
-    		};
-    		document.getElementById("StopVideo").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "STOP Video"}),
-					processData: false,
-				});
-
-    			alert("STOP Video");
-    		};
-    		document.getElementById("Mic1Up").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Mic 1 UP"}),
-					processData: false,
-				});
-
-    			alert("Mic 1 UP");
-    		};
-    		document.getElementById("Mic1Down").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Mic 1 DOWN"}),
-					processData: false,
-				});
-
-    			alert("Mic 1 DOWN");
-    		};
-    		document.getElementById("Mic1Mute").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "MUTE Mic 1"}),
-					processData: false,
-				});
-
-    			alert("MUTE Mic 1");
-    		};
-    		document.getElementById("Mic2Up").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Mic 2 UP"}),
-					processData: false,
-				});
-
-    			alert("Mic 2 UP");
-    		};
-    		document.getElementById("Mic2Down").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Mic 2 DOWN"}),
-					processData: false,
-				});
-
-    			alert("Mic 2 DOWN");
-    		};
-    		document.getElementById("Mic2Mute").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "MUTE Mic 2"}),
-					processData: false,
-				});
-
-    			alert("MUTE Mic 2");
-    		};
-    		document.getElementById("VideoInput1").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 1"}),
-					processData: false,
-				});
-
-    			alert("Video Input 1");
-    		};
-    		document.getElementById("VideoInput2").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					contentType: 'application/json',
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 2"}),
-					processData: false,
-					dataType: "json"
-				});
-
-    			alert("Video Input 2");
-    		};
-    		document.getElementById("VideoInput4").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 4"}),
-					processData: false,
-				});
-    			alert("Video Input 4");
-    		};
-    		document.getElementById("VideoInput5").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 5"}),
-					processData: false,
-				});
-
-    			alert("Video Input 5");
-    		};
-    		document.getElementById("VideoInput6").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 6"}),
-					processData: false,
-				});
-
-    			alert("Video Input 6");
-    		};
-    		document.getElementById("VideoInput7").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Video Input 7"}),
-					processData: false,
-				});
-
-    			alert("Video Input 7");
-    		};
-    		document.getElementById("Albert").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "Voice Call NOW"}),
-					processData: false,
-				});
-
-    			alert("Voice Call NOW");
-    		};
-    		document.getElementById("Herhold").onclick = function() {
-    			$.ajax({
-					type: "POST",
-					beforeSend: function(request) {
-						request.setRequestHeader("Content-Type", "application/json");
-					},
-					url: "https://discordapp.com/api/webhooks/639201692004515857/gIJ33IR-1wH3OnDaz-iZE8k5z8gRYxFx4KK11FSp2njWEVME5Cdsz5fnUnOZ5Fee338Q",
-					data: JSON.stringify({"content": "EMERGENCY"}),
-					processData: false,
-				});
-
-    			alert("EMERGENCY");
-    		};
-
-    	};
+  </head>
+  <body>
+    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
+    <div id="dialogWrap">
+        <div id="dialogWrapCell">
+            <div id="mainDialog">
+                <div id="dialogText">This page is password protected.</div>
+                <div id="passArea">
+                    <p id="passwordPrompt">Password</p>
+                    <input id="pass" type="password" name="pass">
+                    <div>
+                        <span id="messageWrapper">
+                            <span id="invalidPass" class="notifyText">Sorry, please try again.</span>
+                            <span id="success" class="notifyText">Success!</span>
+                            &nbsp;
+                        </span>
+                        <button id="submitPass" type="button">Submit</button>
+                        <div style="clear: both;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+/*
+CryptoJS v3.1.2
+code.google.com/p/crypto-js
+(c) 2009-2013 by Jeff Mott. All rights reserved.
+code.google.com/p/crypto-js/wiki/License
+*/
+var CryptoJS=CryptoJS||function(u,p){var d={},l=d.lib={},s=function(){},t=l.Base={extend:function(a){s.prototype=this;var c=new s;a&&c.mixIn(a);c.hasOwnProperty("init")||(c.init=function(){c.$super.init.apply(this,arguments)});c.init.prototype=c;c.$super=this;return c},create:function(){var a=this.extend();a.init.apply(a,arguments);return a},init:function(){},mixIn:function(a){for(var c in a)a.hasOwnProperty(c)&&(this[c]=a[c]);a.hasOwnProperty("toString")&&(this.toString=a.toString)},clone:function(){return this.init.prototype.extend(this)}},
+r=l.WordArray=t.extend({init:function(a,c){a=this.words=a||[];this.sigBytes=c!=p?c:4*a.length},toString:function(a){return(a||v).stringify(this)},concat:function(a){var c=this.words,e=a.words,j=this.sigBytes;a=a.sigBytes;this.clamp();if(j%4)for(var k=0;k<a;k++)c[j+k>>>2]|=(e[k>>>2]>>>24-8*(k%4)&255)<<24-8*((j+k)%4);else if(65535<e.length)for(k=0;k<a;k+=4)c[j+k>>>2]=e[k>>>2];else c.push.apply(c,e);this.sigBytes+=a;return this},clamp:function(){var a=this.words,c=this.sigBytes;a[c>>>2]&=4294967295<<
+32-8*(c%4);a.length=u.ceil(c/4)},clone:function(){var a=t.clone.call(this);a.words=this.words.slice(0);return a},random:function(a){for(var c=[],e=0;e<a;e+=4)c.push(4294967296*u.random()|0);return new r.init(c,a)}}),w=d.enc={},v=w.Hex={stringify:function(a){var c=a.words;a=a.sigBytes;for(var e=[],j=0;j<a;j++){var k=c[j>>>2]>>>24-8*(j%4)&255;e.push((k>>>4).toString(16));e.push((k&15).toString(16))}return e.join("")},parse:function(a){for(var c=a.length,e=[],j=0;j<c;j+=2)e[j>>>3]|=parseInt(a.substr(j,
+2),16)<<24-4*(j%8);return new r.init(e,c/2)}},b=w.Latin1={stringify:function(a){var c=a.words;a=a.sigBytes;for(var e=[],j=0;j<a;j++)e.push(String.fromCharCode(c[j>>>2]>>>24-8*(j%4)&255));return e.join("")},parse:function(a){for(var c=a.length,e=[],j=0;j<c;j++)e[j>>>2]|=(a.charCodeAt(j)&255)<<24-8*(j%4);return new r.init(e,c)}},x=w.Utf8={stringify:function(a){try{return decodeURIComponent(escape(b.stringify(a)))}catch(c){throw Error("Malformed UTF-8 data");}},parse:function(a){return b.parse(unescape(encodeURIComponent(a)))}},
+q=l.BufferedBlockAlgorithm=t.extend({reset:function(){this._data=new r.init;this._nDataBytes=0},_append:function(a){"string"==typeof a&&(a=x.parse(a));this._data.concat(a);this._nDataBytes+=a.sigBytes},_process:function(a){var c=this._data,e=c.words,j=c.sigBytes,k=this.blockSize,b=j/(4*k),b=a?u.ceil(b):u.max((b|0)-this._minBufferSize,0);a=b*k;j=u.min(4*a,j);if(a){for(var q=0;q<a;q+=k)this._doProcessBlock(e,q);q=e.splice(0,a);c.sigBytes-=j}return new r.init(q,j)},clone:function(){var a=t.clone.call(this);
+a._data=this._data.clone();return a},_minBufferSize:0});l.Hasher=q.extend({cfg:t.extend(),init:function(a){this.cfg=this.cfg.extend(a);this.reset()},reset:function(){q.reset.call(this);this._doReset()},update:function(a){this._append(a);this._process();return this},finalize:function(a){a&&this._append(a);return this._doFinalize()},blockSize:16,_createHelper:function(a){return function(b,e){return(new a.init(e)).finalize(b)}},_createHmacHelper:function(a){return function(b,e){return(new n.HMAC.init(a,
+e)).finalize(b)}}});var n=d.algo={};return d}(Math);
+(function(){var u=CryptoJS,p=u.lib.WordArray;u.enc.Base64={stringify:function(d){var l=d.words,p=d.sigBytes,t=this._map;d.clamp();d=[];for(var r=0;r<p;r+=3)for(var w=(l[r>>>2]>>>24-8*(r%4)&255)<<16|(l[r+1>>>2]>>>24-8*((r+1)%4)&255)<<8|l[r+2>>>2]>>>24-8*((r+2)%4)&255,v=0;4>v&&r+0.75*v<p;v++)d.push(t.charAt(w>>>6*(3-v)&63));if(l=t.charAt(64))for(;d.length%4;)d.push(l);return d.join("")},parse:function(d){var l=d.length,s=this._map,t=s.charAt(64);t&&(t=d.indexOf(t),-1!=t&&(l=t));for(var t=[],r=0,w=0;w<
+l;w++)if(w%4){var v=s.indexOf(d.charAt(w-1))<<2*(w%4),b=s.indexOf(d.charAt(w))>>>6-2*(w%4);t[r>>>2]|=(v|b)<<24-8*(r%4);r++}return p.create(t,r)},_map:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="}})();
+(function(u){function p(b,n,a,c,e,j,k){b=b+(n&a|~n&c)+e+k;return(b<<j|b>>>32-j)+n}function d(b,n,a,c,e,j,k){b=b+(n&c|a&~c)+e+k;return(b<<j|b>>>32-j)+n}function l(b,n,a,c,e,j,k){b=b+(n^a^c)+e+k;return(b<<j|b>>>32-j)+n}function s(b,n,a,c,e,j,k){b=b+(a^(n|~c))+e+k;return(b<<j|b>>>32-j)+n}for(var t=CryptoJS,r=t.lib,w=r.WordArray,v=r.Hasher,r=t.algo,b=[],x=0;64>x;x++)b[x]=4294967296*u.abs(u.sin(x+1))|0;r=r.MD5=v.extend({_doReset:function(){this._hash=new w.init([1732584193,4023233417,2562383102,271733878])},
+_doProcessBlock:function(q,n){for(var a=0;16>a;a++){var c=n+a,e=q[c];q[c]=(e<<8|e>>>24)&16711935|(e<<24|e>>>8)&4278255360}var a=this._hash.words,c=q[n+0],e=q[n+1],j=q[n+2],k=q[n+3],z=q[n+4],r=q[n+5],t=q[n+6],w=q[n+7],v=q[n+8],A=q[n+9],B=q[n+10],C=q[n+11],u=q[n+12],D=q[n+13],E=q[n+14],x=q[n+15],f=a[0],m=a[1],g=a[2],h=a[3],f=p(f,m,g,h,c,7,b[0]),h=p(h,f,m,g,e,12,b[1]),g=p(g,h,f,m,j,17,b[2]),m=p(m,g,h,f,k,22,b[3]),f=p(f,m,g,h,z,7,b[4]),h=p(h,f,m,g,r,12,b[5]),g=p(g,h,f,m,t,17,b[6]),m=p(m,g,h,f,w,22,b[7]),
+f=p(f,m,g,h,v,7,b[8]),h=p(h,f,m,g,A,12,b[9]),g=p(g,h,f,m,B,17,b[10]),m=p(m,g,h,f,C,22,b[11]),f=p(f,m,g,h,u,7,b[12]),h=p(h,f,m,g,D,12,b[13]),g=p(g,h,f,m,E,17,b[14]),m=p(m,g,h,f,x,22,b[15]),f=d(f,m,g,h,e,5,b[16]),h=d(h,f,m,g,t,9,b[17]),g=d(g,h,f,m,C,14,b[18]),m=d(m,g,h,f,c,20,b[19]),f=d(f,m,g,h,r,5,b[20]),h=d(h,f,m,g,B,9,b[21]),g=d(g,h,f,m,x,14,b[22]),m=d(m,g,h,f,z,20,b[23]),f=d(f,m,g,h,A,5,b[24]),h=d(h,f,m,g,E,9,b[25]),g=d(g,h,f,m,k,14,b[26]),m=d(m,g,h,f,v,20,b[27]),f=d(f,m,g,h,D,5,b[28]),h=d(h,f,
+m,g,j,9,b[29]),g=d(g,h,f,m,w,14,b[30]),m=d(m,g,h,f,u,20,b[31]),f=l(f,m,g,h,r,4,b[32]),h=l(h,f,m,g,v,11,b[33]),g=l(g,h,f,m,C,16,b[34]),m=l(m,g,h,f,E,23,b[35]),f=l(f,m,g,h,e,4,b[36]),h=l(h,f,m,g,z,11,b[37]),g=l(g,h,f,m,w,16,b[38]),m=l(m,g,h,f,B,23,b[39]),f=l(f,m,g,h,D,4,b[40]),h=l(h,f,m,g,c,11,b[41]),g=l(g,h,f,m,k,16,b[42]),m=l(m,g,h,f,t,23,b[43]),f=l(f,m,g,h,A,4,b[44]),h=l(h,f,m,g,u,11,b[45]),g=l(g,h,f,m,x,16,b[46]),m=l(m,g,h,f,j,23,b[47]),f=s(f,m,g,h,c,6,b[48]),h=s(h,f,m,g,w,10,b[49]),g=s(g,h,f,m,
+E,15,b[50]),m=s(m,g,h,f,r,21,b[51]),f=s(f,m,g,h,u,6,b[52]),h=s(h,f,m,g,k,10,b[53]),g=s(g,h,f,m,B,15,b[54]),m=s(m,g,h,f,e,21,b[55]),f=s(f,m,g,h,v,6,b[56]),h=s(h,f,m,g,x,10,b[57]),g=s(g,h,f,m,t,15,b[58]),m=s(m,g,h,f,D,21,b[59]),f=s(f,m,g,h,z,6,b[60]),h=s(h,f,m,g,C,10,b[61]),g=s(g,h,f,m,j,15,b[62]),m=s(m,g,h,f,A,21,b[63]);a[0]=a[0]+f|0;a[1]=a[1]+m|0;a[2]=a[2]+g|0;a[3]=a[3]+h|0},_doFinalize:function(){var b=this._data,n=b.words,a=8*this._nDataBytes,c=8*b.sigBytes;n[c>>>5]|=128<<24-c%32;var e=u.floor(a/
+4294967296);n[(c+64>>>9<<4)+15]=(e<<8|e>>>24)&16711935|(e<<24|e>>>8)&4278255360;n[(c+64>>>9<<4)+14]=(a<<8|a>>>24)&16711935|(a<<24|a>>>8)&4278255360;b.sigBytes=4*(n.length+1);this._process();b=this._hash;n=b.words;for(a=0;4>a;a++)c=n[a],n[a]=(c<<8|c>>>24)&16711935|(c<<24|c>>>8)&4278255360;return b},clone:function(){var b=v.clone.call(this);b._hash=this._hash.clone();return b}});t.MD5=v._createHelper(r);t.HmacMD5=v._createHmacHelper(r)})(Math);
+(function(){var u=CryptoJS,p=u.lib,d=p.Base,l=p.WordArray,p=u.algo,s=p.EvpKDF=d.extend({cfg:d.extend({keySize:4,hasher:p.MD5,iterations:1}),init:function(d){this.cfg=this.cfg.extend(d)},compute:function(d,r){for(var p=this.cfg,s=p.hasher.create(),b=l.create(),u=b.words,q=p.keySize,p=p.iterations;u.length<q;){n&&s.update(n);var n=s.update(d).finalize(r);s.reset();for(var a=1;a<p;a++)n=s.finalize(n),s.reset();b.concat(n)}b.sigBytes=4*q;return b}});u.EvpKDF=function(d,l,p){return s.create(p).compute(d,
+l)}})();
+CryptoJS.lib.Cipher||function(u){var p=CryptoJS,d=p.lib,l=d.Base,s=d.WordArray,t=d.BufferedBlockAlgorithm,r=p.enc.Base64,w=p.algo.EvpKDF,v=d.Cipher=t.extend({cfg:l.extend(),createEncryptor:function(e,a){return this.create(this._ENC_XFORM_MODE,e,a)},createDecryptor:function(e,a){return this.create(this._DEC_XFORM_MODE,e,a)},init:function(e,a,b){this.cfg=this.cfg.extend(b);this._xformMode=e;this._key=a;this.reset()},reset:function(){t.reset.call(this);this._doReset()},process:function(e){this._append(e);return this._process()},
+finalize:function(e){e&&this._append(e);return this._doFinalize()},keySize:4,ivSize:4,_ENC_XFORM_MODE:1,_DEC_XFORM_MODE:2,_createHelper:function(e){return{encrypt:function(b,k,d){return("string"==typeof k?c:a).encrypt(e,b,k,d)},decrypt:function(b,k,d){return("string"==typeof k?c:a).decrypt(e,b,k,d)}}}});d.StreamCipher=v.extend({_doFinalize:function(){return this._process(!0)},blockSize:1});var b=p.mode={},x=function(e,a,b){var c=this._iv;c?this._iv=u:c=this._prevBlock;for(var d=0;d<b;d++)e[a+d]^=
+c[d]},q=(d.BlockCipherMode=l.extend({createEncryptor:function(e,a){return this.Encryptor.create(e,a)},createDecryptor:function(e,a){return this.Decryptor.create(e,a)},init:function(e,a){this._cipher=e;this._iv=a}})).extend();q.Encryptor=q.extend({processBlock:function(e,a){var b=this._cipher,c=b.blockSize;x.call(this,e,a,c);b.encryptBlock(e,a);this._prevBlock=e.slice(a,a+c)}});q.Decryptor=q.extend({processBlock:function(e,a){var b=this._cipher,c=b.blockSize,d=e.slice(a,a+c);b.decryptBlock(e,a);x.call(this,
+e,a,c);this._prevBlock=d}});b=b.CBC=q;q=(p.pad={}).Pkcs7={pad:function(a,b){for(var c=4*b,c=c-a.sigBytes%c,d=c<<24|c<<16|c<<8|c,l=[],n=0;n<c;n+=4)l.push(d);c=s.create(l,c);a.concat(c)},unpad:function(a){a.sigBytes-=a.words[a.sigBytes-1>>>2]&255}};d.BlockCipher=v.extend({cfg:v.cfg.extend({mode:b,padding:q}),reset:function(){v.reset.call(this);var a=this.cfg,b=a.iv,a=a.mode;if(this._xformMode==this._ENC_XFORM_MODE)var c=a.createEncryptor;else c=a.createDecryptor,this._minBufferSize=1;this._mode=c.call(a,
+this,b&&b.words)},_doProcessBlock:function(a,b){this._mode.processBlock(a,b)},_doFinalize:function(){var a=this.cfg.padding;if(this._xformMode==this._ENC_XFORM_MODE){a.pad(this._data,this.blockSize);var b=this._process(!0)}else b=this._process(!0),a.unpad(b);return b},blockSize:4});var n=d.CipherParams=l.extend({init:function(a){this.mixIn(a)},toString:function(a){return(a||this.formatter).stringify(this)}}),b=(p.format={}).OpenSSL={stringify:function(a){var b=a.ciphertext;a=a.salt;return(a?s.create([1398893684,
+1701076831]).concat(a).concat(b):b).toString(r)},parse:function(a){a=r.parse(a);var b=a.words;if(1398893684==b[0]&&1701076831==b[1]){var c=s.create(b.slice(2,4));b.splice(0,4);a.sigBytes-=16}return n.create({ciphertext:a,salt:c})}},a=d.SerializableCipher=l.extend({cfg:l.extend({format:b}),encrypt:function(a,b,c,d){d=this.cfg.extend(d);var l=a.createEncryptor(c,d);b=l.finalize(b);l=l.cfg;return n.create({ciphertext:b,key:c,iv:l.iv,algorithm:a,mode:l.mode,padding:l.padding,blockSize:a.blockSize,formatter:d.format})},
+decrypt:function(a,b,c,d){d=this.cfg.extend(d);b=this._parse(b,d.format);return a.createDecryptor(c,d).finalize(b.ciphertext)},_parse:function(a,b){return"string"==typeof a?b.parse(a,this):a}}),p=(p.kdf={}).OpenSSL={execute:function(a,b,c,d){d||(d=s.random(8));a=w.create({keySize:b+c}).compute(a,d);c=s.create(a.words.slice(b),4*c);a.sigBytes=4*b;return n.create({key:a,iv:c,salt:d})}},c=d.PasswordBasedCipher=a.extend({cfg:a.cfg.extend({kdf:p}),encrypt:function(b,c,d,l){l=this.cfg.extend(l);d=l.kdf.execute(d,
+b.keySize,b.ivSize);l.iv=d.iv;b=a.encrypt.call(this,b,c,d.key,l);b.mixIn(d);return b},decrypt:function(b,c,d,l){l=this.cfg.extend(l);c=this._parse(c,l.format);d=l.kdf.execute(d,b.keySize,b.ivSize,c.salt);l.iv=d.iv;return a.decrypt.call(this,b,c,d.key,l)}})}();
+(function(){for(var u=CryptoJS,p=u.lib.BlockCipher,d=u.algo,l=[],s=[],t=[],r=[],w=[],v=[],b=[],x=[],q=[],n=[],a=[],c=0;256>c;c++)a[c]=128>c?c<<1:c<<1^283;for(var e=0,j=0,c=0;256>c;c++){var k=j^j<<1^j<<2^j<<3^j<<4,k=k>>>8^k&255^99;l[e]=k;s[k]=e;var z=a[e],F=a[z],G=a[F],y=257*a[k]^16843008*k;t[e]=y<<24|y>>>8;r[e]=y<<16|y>>>16;w[e]=y<<8|y>>>24;v[e]=y;y=16843009*G^65537*F^257*z^16843008*e;b[k]=y<<24|y>>>8;x[k]=y<<16|y>>>16;q[k]=y<<8|y>>>24;n[k]=y;e?(e=z^a[a[a[G^z]]],j^=a[a[j]]):e=j=1}var H=[0,1,2,4,8,
+16,32,64,128,27,54],d=d.AES=p.extend({_doReset:function(){for(var a=this._key,c=a.words,d=a.sigBytes/4,a=4*((this._nRounds=d+6)+1),e=this._keySchedule=[],j=0;j<a;j++)if(j<d)e[j]=c[j];else{var k=e[j-1];j%d?6<d&&4==j%d&&(k=l[k>>>24]<<24|l[k>>>16&255]<<16|l[k>>>8&255]<<8|l[k&255]):(k=k<<8|k>>>24,k=l[k>>>24]<<24|l[k>>>16&255]<<16|l[k>>>8&255]<<8|l[k&255],k^=H[j/d|0]<<24);e[j]=e[j-d]^k}c=this._invKeySchedule=[];for(d=0;d<a;d++)j=a-d,k=d%4?e[j]:e[j-4],c[d]=4>d||4>=j?k:b[l[k>>>24]]^x[l[k>>>16&255]]^q[l[k>>>
+8&255]]^n[l[k&255]]},encryptBlock:function(a,b){this._doCryptBlock(a,b,this._keySchedule,t,r,w,v,l)},decryptBlock:function(a,c){var d=a[c+1];a[c+1]=a[c+3];a[c+3]=d;this._doCryptBlock(a,c,this._invKeySchedule,b,x,q,n,s);d=a[c+1];a[c+1]=a[c+3];a[c+3]=d},_doCryptBlock:function(a,b,c,d,e,j,l,f){for(var m=this._nRounds,g=a[b]^c[0],h=a[b+1]^c[1],k=a[b+2]^c[2],n=a[b+3]^c[3],p=4,r=1;r<m;r++)var q=d[g>>>24]^e[h>>>16&255]^j[k>>>8&255]^l[n&255]^c[p++],s=d[h>>>24]^e[k>>>16&255]^j[n>>>8&255]^l[g&255]^c[p++],t=
+d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j[h>>>8&255]^l[k&255]^c[p++],g=q,h=s,k=t;q=(f[g>>>24]<<24|f[h>>>16&255]<<16|f[k>>>8&255]<<8|f[n&255])^c[p++];s=(f[h>>>24]<<24|f[k>>>16&255]<<16|f[n>>>8&255]<<8|f[g&255])^c[p++];t=(f[k>>>24]<<24|f[n>>>16&255]<<16|f[g>>>8&255]<<8|f[h&255])^c[p++];n=(f[n>>>24]<<24|f[g>>>16&255]<<16|f[h>>>8&255]<<8|f[k&255])^c[p++];a[b]=q;a[b+1]=s;a[b+2]=t;a[b+3]=n},keySize:8});u.AES=p._createHelper(d)})();
     </script>
-</head>
-<body>
-	<table style="width:100%">
-		<tr>
-			<td>
-		    	<div class="imgbox">
-				    <img class="large-fit" id="LightOn" src="assets/LightOn.jpg">
-				</div>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="StartMusic" src="assets/StartMusic.jpg">
-						</div>
-	    			</tr>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="StopMusic" src="assets/StopMusic.jpg">
-						</div>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic1" src="assets/Mic1.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic1Up" src="assets/Mic1Up.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic1Mute" src="assets/Mic1Mute.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic1Down" src="assets/Mic1Down.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput1" src="assets/VideoInput1.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput2" src="assets/VideoInput2.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput4" src="assets/VideoInput4.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput5" src="assets/VideoInput5.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput6" src="assets/VideoInput6.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="small-fit" id="VideoInput7" src="assets/VideoInput7.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    </tr>
-	    <tr>
-	    	<td>
-		    	<div class="imgbox">
-				    <img class="large-fit" id="LightOff" src="assets/LightOff.jpg">
-				</div>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="StartVideo" src="assets/StartVideo.jpg">
-						</div>
-	    			</tr>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="StopVideo" src="assets/StopVideo.jpg">
-						</div>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic2" src="assets/Mic2.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic2Up" src="assets/Mic2Up.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    			<tr>
-	    				<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic2Mute" src="assets/Mic2Mute.jpg">
-							</div>
-						</td>
-						<td>
-		    				<div class="imgbox">
-							    <img class="medium-fit" id="Mic2Down" src="assets/Mic2Down.jpg">
-							</div>
-						</td>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    	<td>
-	    		<table>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="Albert" src="assets/Albert.jpg">
-						</div>
-	    			</tr>
-	    			<tr>
-	    				<div class="imgbox">
-						    <img class="medium-fit" id="Herhold" src="assets/Herhold.jpg">
-						</div>
-	    			</tr>
-	    		</table>
-	    	</td>
-	    </tr>
-	</table>
-</body>
+    <script>
+/*
+CryptoJS v3.1.2
+code.google.com/p/crypto-js
+(c) 2009-2013 by Jeff Mott. All rights reserved.
+code.google.com/p/crypto-js/wiki/License
+*/
+var CryptoJS=CryptoJS||function(g,j){var e={},d=e.lib={},m=function(){},n=d.Base={extend:function(a){m.prototype=this;var c=new m;a&&c.mixIn(a);c.hasOwnProperty("init")||(c.init=function(){c.$super.init.apply(this,arguments)});c.init.prototype=c;c.$super=this;return c},create:function(){var a=this.extend();a.init.apply(a,arguments);return a},init:function(){},mixIn:function(a){for(var c in a)a.hasOwnProperty(c)&&(this[c]=a[c]);a.hasOwnProperty("toString")&&(this.toString=a.toString)},clone:function(){return this.init.prototype.extend(this)}},
+q=d.WordArray=n.extend({init:function(a,c){a=this.words=a||[];this.sigBytes=c!=j?c:4*a.length},toString:function(a){return(a||l).stringify(this)},concat:function(a){var c=this.words,p=a.words,f=this.sigBytes;a=a.sigBytes;this.clamp();if(f%4)for(var b=0;b<a;b++)c[f+b>>>2]|=(p[b>>>2]>>>24-8*(b%4)&255)<<24-8*((f+b)%4);else if(65535<p.length)for(b=0;b<a;b+=4)c[f+b>>>2]=p[b>>>2];else c.push.apply(c,p);this.sigBytes+=a;return this},clamp:function(){var a=this.words,c=this.sigBytes;a[c>>>2]&=4294967295<<
+32-8*(c%4);a.length=g.ceil(c/4)},clone:function(){var a=n.clone.call(this);a.words=this.words.slice(0);return a},random:function(a){for(var c=[],b=0;b<a;b+=4)c.push(4294967296*g.random()|0);return new q.init(c,a)}}),b=e.enc={},l=b.Hex={stringify:function(a){var c=a.words;a=a.sigBytes;for(var b=[],f=0;f<a;f++){var d=c[f>>>2]>>>24-8*(f%4)&255;b.push((d>>>4).toString(16));b.push((d&15).toString(16))}return b.join("")},parse:function(a){for(var c=a.length,b=[],f=0;f<c;f+=2)b[f>>>3]|=parseInt(a.substr(f,
+2),16)<<24-4*(f%8);return new q.init(b,c/2)}},k=b.Latin1={stringify:function(a){var c=a.words;a=a.sigBytes;for(var b=[],f=0;f<a;f++)b.push(String.fromCharCode(c[f>>>2]>>>24-8*(f%4)&255));return b.join("")},parse:function(a){for(var c=a.length,b=[],f=0;f<c;f++)b[f>>>2]|=(a.charCodeAt(f)&255)<<24-8*(f%4);return new q.init(b,c)}},h=b.Utf8={stringify:function(a){try{return decodeURIComponent(escape(k.stringify(a)))}catch(b){throw Error("Malformed UTF-8 data");}},parse:function(a){return k.parse(unescape(encodeURIComponent(a)))}},
+u=d.BufferedBlockAlgorithm=n.extend({reset:function(){this._data=new q.init;this._nDataBytes=0},_append:function(a){"string"==typeof a&&(a=h.parse(a));this._data.concat(a);this._nDataBytes+=a.sigBytes},_process:function(a){var b=this._data,d=b.words,f=b.sigBytes,l=this.blockSize,e=f/(4*l),e=a?g.ceil(e):g.max((e|0)-this._minBufferSize,0);a=e*l;f=g.min(4*a,f);if(a){for(var h=0;h<a;h+=l)this._doProcessBlock(d,h);h=d.splice(0,a);b.sigBytes-=f}return new q.init(h,f)},clone:function(){var a=n.clone.call(this);
+a._data=this._data.clone();return a},_minBufferSize:0});d.Hasher=u.extend({cfg:n.extend(),init:function(a){this.cfg=this.cfg.extend(a);this.reset()},reset:function(){u.reset.call(this);this._doReset()},update:function(a){this._append(a);this._process();return this},finalize:function(a){a&&this._append(a);return this._doFinalize()},blockSize:16,_createHelper:function(a){return function(b,d){return(new a.init(d)).finalize(b)}},_createHmacHelper:function(a){return function(b,d){return(new w.HMAC.init(a,
+d)).finalize(b)}}});var w=e.algo={};return e}(Math);
+(function(){var g=CryptoJS,j=g.lib,e=j.WordArray,d=j.Hasher,m=[],j=g.algo.SHA1=d.extend({_doReset:function(){this._hash=new e.init([1732584193,4023233417,2562383102,271733878,3285377520])},_doProcessBlock:function(d,e){for(var b=this._hash.words,l=b[0],k=b[1],h=b[2],g=b[3],j=b[4],a=0;80>a;a++){if(16>a)m[a]=d[e+a]|0;else{var c=m[a-3]^m[a-8]^m[a-14]^m[a-16];m[a]=c<<1|c>>>31}c=(l<<5|l>>>27)+j+m[a];c=20>a?c+((k&h|~k&g)+1518500249):40>a?c+((k^h^g)+1859775393):60>a?c+((k&h|k&g|h&g)-1894007588):c+((k^h^
+g)-899497514);j=g;g=h;h=k<<30|k>>>2;k=l;l=c}b[0]=b[0]+l|0;b[1]=b[1]+k|0;b[2]=b[2]+h|0;b[3]=b[3]+g|0;b[4]=b[4]+j|0},_doFinalize:function(){var d=this._data,e=d.words,b=8*this._nDataBytes,l=8*d.sigBytes;e[l>>>5]|=128<<24-l%32;e[(l+64>>>9<<4)+14]=Math.floor(b/4294967296);e[(l+64>>>9<<4)+15]=b;d.sigBytes=4*e.length;this._process();return this._hash},clone:function(){var e=d.clone.call(this);e._hash=this._hash.clone();return e}});g.SHA1=d._createHelper(j);g.HmacSHA1=d._createHmacHelper(j)})();
+(function(){var g=CryptoJS,j=g.enc.Utf8;g.algo.HMAC=g.lib.Base.extend({init:function(e,d){e=this._hasher=new e.init;"string"==typeof d&&(d=j.parse(d));var g=e.blockSize,n=4*g;d.sigBytes>n&&(d=e.finalize(d));d.clamp();for(var q=this._oKey=d.clone(),b=this._iKey=d.clone(),l=q.words,k=b.words,h=0;h<g;h++)l[h]^=1549556828,k[h]^=909522486;q.sigBytes=b.sigBytes=n;this.reset()},reset:function(){var e=this._hasher;e.reset();e.update(this._iKey)},update:function(e){this._hasher.update(e);return this},finalize:function(e){var d=
+this._hasher;e=d.finalize(e);d.reset();return d.finalize(this._oKey.clone().concat(e))}})})();
+(function(){var g=CryptoJS,j=g.lib,e=j.Base,d=j.WordArray,j=g.algo,m=j.HMAC,n=j.PBKDF2=e.extend({cfg:e.extend({keySize:4,hasher:j.SHA1,iterations:1}),init:function(d){this.cfg=this.cfg.extend(d)},compute:function(e,b){for(var g=this.cfg,k=m.create(g.hasher,e),h=d.create(),j=d.create([1]),n=h.words,a=j.words,c=g.keySize,g=g.iterations;n.length<c;){var p=k.update(b).finalize(j);k.reset();for(var f=p.words,v=f.length,s=p,t=1;t<g;t++){s=k.finalize(s);k.reset();for(var x=s.words,r=0;r<v;r++)f[r]^=x[r]}h.concat(p);
+a[0]++}h.sigBytes=4*c;return h}});g.PBKDF2=function(d,b,e){return n.create(e).compute(d,b)}})();
+    </script>
+    <script>
+        /*! srcdoc-polyfill - v0.1.1 - 2013-03-01
+        * http://github.com/jugglinmike/srcdoc-polyfill/
+        * Copyright (c) 2013 Mike Pennisi; Licensed MIT */
+        (function( window, document, undefined ) {
+	
+	        var idx, iframes;
+	        var _srcDoc = window.srcDoc;
+	        var isCompliant = !!("srcdoc" in document.createElement("iframe"));
+	        var implementations = {
+		        compliant: function( iframe, content ) {
+
+			        if (content) {
+				        iframe.setAttribute("srcdoc", content);
+			        }
+		        },
+		        legacy: function( iframe, content ) {
+
+			        var jsUrl;
+
+			        if (!iframe || !iframe.getAttribute) {
+				        return;
+			        }
+
+			        if (!content) {
+				        content = iframe.getAttribute("srcdoc");
+			        } else {
+				        iframe.setAttribute("srcdoc", content);
+			        }
+
+			        if (content) {
+				        // The value returned by a script-targeted URL will be used as
+				        // the iFrame's content. Create such a URL which returns the
+				        // iFrame element's `srcdoc` attribute.
+				        jsUrl = "javascript: window.frameElement.getAttribute('srcdoc');";
+
+				        iframe.setAttribute("src", jsUrl);
+
+				        // Explicitly set the iFrame's window.location for
+				        // compatability with IE9, which does not react to changes in
+				        // the `src` attribute when it is a `javascript:` URL, for
+				        // some reason
+				        if (iframe.contentWindow) {
+					        iframe.contentWindow.location = jsUrl;
+				        }
+			        }
+		        }
+	        };
+	        var srcDoc = window.srcDoc = {
+		        // Assume the best
+		        set: implementations.compliant,
+		        noConflict: function() {
+			        window.srcDoc = _srcDoc;
+			        return srcDoc;
+		        }
+	        };
+
+	        // If the browser supports srcdoc, no shimming is necessary
+	        if (isCompliant) {
+		        return;
+	        }
+
+	        srcDoc.set = implementations.legacy;
+
+	        // Automatically shim any iframes already present in the document
+	        iframes = document.getElementsByTagName("iframe");
+	        idx = iframes.length;
+
+	        while (idx--) {
+		        srcDoc.set( iframes[idx] );
+	        }
+
+        }( this, this.document ));
+    </script>
+    <script>
+        var pl = {"salt":"XdJZ3XBKzzXEDG/T7XqksmhVgoLSdfiuA1+bcsUeiig=","iv":"odWMz1pPUH1dAotNuGGnfg==","data":"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"};
+        
+        var submitPass = document.getElementById('submitPass');
+        var passEl = document.getElementById('pass');
+        var invalidPassEl = document.getElementById('invalidPass');
+        var successEl = document.getElementById('success');
+        var contentFrame = document.getElementById('contentFrame');
+        
+        if (pl === "") {
+            submitPass.disabled = true;
+            passEl.disabled = true;
+            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
+        }
+        
+        function doSubmit(evt) {
+            try {
+                var decrypted = decryptFile(CryptoJS.enc.Base64.parse(pl.data), passEl.value, CryptoJS.enc.Base64.parse(pl.salt), CryptoJS.enc.Base64.parse(pl.iv));
+                if (decrypted === "") throw "No data returned";
+                
+                // Set default iframe link targets to _top so all links break out of the iframe
+                decrypted = decrypted.replace("<head>", "<head><base href=\".\" target=\"_top\">");
+                
+                srcDoc.set(contentFrame, decrypted);
+                
+                successEl.style.display = "inline";
+                passEl.disabled = true;
+                submitPass.disabled = true;
+                setTimeout(function() {
+                    dialogWrap.style.display = "none";
+                }, 1000);
+            } catch (e) {
+                invalidPassEl.style.display = "inline";
+                passEl.value = "";
+            }
+        }
+        
+        submitPass.onclick = doSubmit;
+        passEl.onkeypress = function(e){
+            if (!e) e = window.event;
+            var keyCode = e.keyCode || e.which;
+            invalidPassEl.style.display = "none";
+            if (keyCode == '13'){
+              // Enter pressed
+              doSubmit();
+              return false;
+            }
+        }
+        
+        function decryptFile(contents, password, salt, iv) {
+            var _cp = CryptoJS.lib.CipherParams.create({
+                ciphertext: contents
+            });
+            var key = CryptoJS.PBKDF2(password, salt, { keySize: 256/32, iterations: 100 });
+            var decrypted = CryptoJS.AES.decrypt(_cp, key, {iv: iv});
+            
+            return decrypted.toString(CryptoJS.enc.Utf8);
+        }
+    </script>
+  </body>
 </html>

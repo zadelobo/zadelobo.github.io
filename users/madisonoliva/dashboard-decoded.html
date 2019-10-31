@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>AVTC Mission Control</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .imgbox {
+            display: grid;
+            height: 100%;
+        }
+        .large-fit {
+            max-width: 100%;
+            max-height: 49.5vh;
+            margin: auto;
+        }
+        .medium-fit {
+            max-width: 100%;
+            max-height: 24.25vh;
+            margin: auto;
+        }
+        .small-fit {
+            max-width: 100%;
+            max-height: 16vh;
+            margin: auto;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">//<![CDATA[
+    	window.onload = function() {
+    		document.getElementById("LightOn").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Lights ON"}),
+					processData: false,
+				});
+
+    			alert("Lights ON");
+    		};
+    		document.getElementById("LightOff").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Lights OFF"}),
+					processData: false,
+				});
+
+    			alert("Lights OFF");
+    		};
+    		document.getElementById("StartMusic").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "PLAY Music"}),
+					processData: false,
+				});
+
+    			alert("PLAY Music");
+    		};
+    		document.getElementById("StopMusic").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "STOP Music"}),
+					processData: false,
+				});
+
+    			alert("STOP Music");
+    		};
+    		document.getElementById("StartVideo").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "PLAY Video"}),
+					processData: false,
+				});
+
+    			alert("PLAY Video");
+    		};
+    		document.getElementById("StopVideo").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "STOP Video"}),
+					processData: false,
+				});
+
+    			alert("STOP Video");
+    		};
+    		document.getElementById("Mic1Up").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Mic 1 UP"}),
+					processData: false,
+				});
+
+    			alert("Mic 1 UP");
+    		};
+    		document.getElementById("Mic1Down").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Mic 1 DOWN"}),
+					processData: false,
+				});
+
+    			alert("Mic 1 DOWN");
+    		};
+    		document.getElementById("Mic1Mute").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "MUTE Mic 1"}),
+					processData: false,
+				});
+
+    			alert("MUTE Mic 1");
+    		};
+    		document.getElementById("Mic2Up").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Mic 2 UP"}),
+					processData: false,
+				});
+
+    			alert("Mic 2 UP");
+    		};
+    		document.getElementById("Mic2Down").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Mic 2 DOWN"}),
+					processData: false,
+				});
+
+    			alert("Mic 2 DOWN");
+    		};
+    		document.getElementById("Mic2Mute").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "MUTE Mic 2"}),
+					processData: false,
+				});
+
+    			alert("MUTE Mic 2");
+    		};
+    		document.getElementById("VideoInput1").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 1"}),
+					processData: false,
+				});
+
+    			alert("Video Input 1");
+    		};
+    		document.getElementById("VideoInput2").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					contentType: 'application/json',
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 2"}),
+					processData: false,
+					dataType: "json"
+				});
+
+    			alert("Video Input 2");
+    		};
+    		document.getElementById("VideoInput4").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 4"}),
+					processData: false,
+				});
+    			alert("Video Input 4");
+    		};
+    		document.getElementById("VideoInput5").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 5"}),
+					processData: false,
+				});
+
+    			alert("Video Input 5");
+    		};
+    		document.getElementById("VideoInput6").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 6"}),
+					processData: false,
+				});
+
+    			alert("Video Input 6");
+    		};
+    		document.getElementById("VideoInput7").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Video Input 7"}),
+					processData: false,
+				});
+
+    			alert("Video Input 7");
+    		};
+    		document.getElementById("Albert").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "Voice Call NOW"}),
+					processData: false,
+				});
+
+    			alert("Voice Call NOW");
+    		};
+    		document.getElementById("Herhold").onclick = function() {
+    			$.ajax({
+					type: "POST",
+					beforeSend: function(request) {
+						request.setRequestHeader("Content-Type", "application/json");
+					},
+					url: "https://discordapp.com/api/webhooks/639200883569065985/nc5uyo9WEFgpWTgBxRmtvPQdWkrkhN2s5kYtgo5JGk5Kjk334vsyXjFPXI7lgnNxrGE9",
+					data: JSON.stringify({"content": "EMERGENCY"}),
+					processData: false,
+				});
+
+    			alert("EMERGENCY");
+    		};
+
+    	};
+    </script>
+</head>
+<body>
+	<table style="width:100%">
+		<tr>
+			<td>
+		    	<div class="imgbox">
+				    <img class="large-fit" id="LightOn" src="assets/LightOn.jpg">
+				</div>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="StartMusic" src="assets/StartMusic.jpg">
+						</div>
+	    			</tr>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="StopMusic" src="assets/StopMusic.jpg">
+						</div>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic1" src="assets/Mic1.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic1Up" src="assets/Mic1Up.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic1Mute" src="assets/Mic1Mute.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic1Down" src="assets/Mic1Down.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput1" src="assets/VideoInput1.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput2" src="assets/VideoInput2.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput4" src="assets/VideoInput4.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput5" src="assets/VideoInput5.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput6" src="assets/VideoInput6.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="small-fit" id="VideoInput7" src="assets/VideoInput7.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+		    	<div class="imgbox">
+				    <img class="large-fit" id="LightOff" src="assets/LightOff.jpg">
+				</div>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="StartVideo" src="assets/StartVideo.jpg">
+						</div>
+	    			</tr>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="StopVideo" src="assets/StopVideo.jpg">
+						</div>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic2" src="assets/Mic2.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic2Up" src="assets/Mic2Up.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    			<tr>
+	    				<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic2Mute" src="assets/Mic2Mute.jpg">
+							</div>
+						</td>
+						<td>
+		    				<div class="imgbox">
+							    <img class="medium-fit" id="Mic2Down" src="assets/Mic2Down.jpg">
+							</div>
+						</td>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    	<td>
+	    		<table>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="Albert" src="assets/Albert.jpg">
+						</div>
+	    			</tr>
+	    			<tr>
+	    				<div class="imgbox">
+						    <img class="medium-fit" id="Herhold" src="assets/Herhold.jpg">
+						</div>
+	    			</tr>
+	    		</table>
+	    	</td>
+	    </tr>
+	</table>
+</body>
+</html>
